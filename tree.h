@@ -16,7 +16,7 @@ class tree{
         void inOrder();
         void inOrderHelp(Node<BaseData>* item);
         void searchAndRemove(BaseData r_target);
-        void remove(Node<BaseData> r_target);
+        void remove(Node<BaseData>* r_target);
     private:
         Node<BaseData>* root = nullptr;
         std::stack<Node<BaseData>*> NodeParent;

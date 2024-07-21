@@ -138,6 +138,30 @@ void tree<BaseData>::searchAndRemove(BaseData r_target){
     }
 }
 template <typename BaseData>
-void tree<BaseData>::remove(Node<BaseData>r_target) {
-    
+void tree<BaseData>::remove(Node<BaseData>* r_target) {
+    if (!r_target->Left && !r_target->Right){
+        delete r_target;
+        r_target = nullptr;
+    }
+    else if(!r_target->Right){
+        
+        *r_target = *r_target->Left;;
+        delete r_target->Left;
+        r_target->Left = nullptr;
+    }
+    else if(!r_target->Left){
+
+    }
+    else {
+        Node<BaseData>* Temp = r_target->Right;
+        Node<BaseData>* Temp2 = r_target->Left;
+        while(Temp->Left)
+            Temp = Temp->Left;
+
+        *r_target = *Temp;
+        delete Temp;
+        Temp = nullptr;
+        r_target->Left = Temp2;
+
+    }
 }

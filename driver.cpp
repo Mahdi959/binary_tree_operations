@@ -12,5 +12,6 @@ int main(){
     TREE.add(4);
     TREE.add(12); 
     TREE.add(18);
+    TREE.searchAndRemove(1);
     TREE.inOrder();
 }
