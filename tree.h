@@ -2,10 +2,10 @@
 #include <stack>
 template <typename BaseData>
 struct Node{
-        Node* Right;
-        Node* Left;
-        BaseData Data;
-        bool visited = false;
+        Node* Right= nullptr;
+        Node* Left =nullptr;
+        BaseData Data = NULL;
+        
 };
 
 template <typename BaseData>
@@ -16,10 +16,9 @@ class tree{
         void inOrder();
         void inOrderHelp(Node<BaseData>* item);
         void searchAndRemove(BaseData r_target);
-        void remove(Node<BaseData>* r_target);
+        void remove(Node<BaseData>*& r_target);
     private:
         Node<BaseData>* root = nullptr;
-        std::stack<Node<BaseData>*> NodeParent;
 
 };
 #include "tree.t"

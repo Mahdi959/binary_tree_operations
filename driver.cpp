@@ -12,6 +12,17 @@ int main(){
     TREE.add(4);
     TREE.add(12); 
     TREE.add(18);
-    TREE.searchAndRemove(1);
     TREE.inOrder();
+    
+    int n;
+    while(true){
+        std::cout<<"Num to be deleted: ";
+        std::cin>>n;
+        TREE.searchAndRemove(n);
+        TREE.inOrder();
+        //  std::cout<<"Num to be added: ";
+        //  std::cin>>n;
+        //   TREE.add(n);
+    }
+
 }

@@ -52,7 +52,7 @@ void tree<BaseData>:: inOrderHelp(Node<BaseData>* item){
 // template <typename BaseData>
 // void tree<BaseData>::print(){
  
-//     Node<BaseData>* Temp = root;
+//     Node<BaseData>* Temp = root;cle
 //  while(Temp || !NodeParent.empty()){
 
         
@@ -113,45 +113,46 @@ void tree<BaseData>:: inOrderHelp(Node<BaseData>* item){
  //}
 template <typename BaseData>
 void tree<BaseData>::searchAndRemove(BaseData r_target){
-    Node<BaseData>* current = root;
+    Node<BaseData>** current = &root;
+
     if(!root){
         return;
     }
     else{
+         std::cout<<"Root: "<<root->Data<<std::endl;
            while(true){
-                if(r_target<current->Data){
-                    current = current->Left;
-                }
-                else if(r_target>current->Data){
-                    current = current->Right;
-                }
-                else if(r_target == current->Data){
-                    remove(current);
+                if(r_target == (*current)->Data){
+                    remove(*current);
                     return;
                 }
+                if(r_target<(*current)->Data && (*current)->Left){
+                    current = &((*current)->Left);
+                }
+                else if(r_target>(*current)->Data && (*current)->Right){
+                    current = &((*current)->Right);
+                }
+                
                 else{
                     std::cout<<"Not Found"<<std::endl;
                     return;
                 }
             }
-        
+       
     }
 }
 template <typename BaseData>
-void tree<BaseData>::remove(Node<BaseData>* r_target) {
-    if (!r_target->Left && !r_target->Right){
+void tree<BaseData>::remove(Node<BaseData>*& r_target) {
+    if (!(r_target->Left && r_target->Right)){
         delete r_target;
         r_target = nullptr;
     }
     else if(!r_target->Right){
         
-        *r_target = *r_target->Left;;
+        *r_target = *r_target->Left;
         delete r_target->Left;
         r_target->Left = nullptr;
     }
-    else if(!r_target->Left){
-
-    }
+    
     else {
         Node<BaseData>* Temp = r_target->Right;
         Node<BaseData>* Temp2 = r_target->Left;
@@ -159,9 +160,12 @@ void tree<BaseData>::remove(Node<BaseData>* r_target) {
             Temp = Temp->Left;
 
         *r_target = *Temp;
-        delete Temp;
+        
+        
+       
         Temp = nullptr;
         r_target->Left = Temp2;
 
+        Temp2= nullptr;
     }
 }
